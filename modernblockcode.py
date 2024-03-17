@@ -79,8 +79,8 @@ class DES:
             D = shift_left(D, i)
             temp = C + D
             k = ""
-            for i in DES.PC_2:
-                k += temp[i - 1]
+            for j in DES.PC_2:
+                k += temp[j - 1]
             subK.append(k)
         return subK
 
@@ -276,6 +276,7 @@ class AES:
             res.append(row)
         return res
 
+    @staticmethod
     def invmixcolumns(matrix: list):
         res = []
         for i in range(4):
@@ -297,9 +298,7 @@ class AES:
     def galois_mult(num_a, num_b):
         a = int(num_a, 16)
         b = int(num_b, 16)
-
         p = 0
-        hi_bit_set = 0
         for i in range(8):
             b_1 = b & 1
             if b_1 == 1:
@@ -310,3 +309,13 @@ class AES:
                 a ^= 0x1b
             b >>= 1
         return p % 256
+
+    @staticmethod
+    def addroundkey(matrix, key):
+        res = []
+        for i in range(4):
+            row = []
+            for j in range(4):
+                row.append(int(matrix[i][j]) ^ int(key[i][j]))
+            res.append(row)
+        return res

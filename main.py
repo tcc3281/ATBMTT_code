@@ -7,3 +7,4 @@ if __name__ == '__main__':
     print(k)
     k_1 = AES.invmixcolumns(k)
     print(k_1)
+    AES.galois_mult('57', '83')
