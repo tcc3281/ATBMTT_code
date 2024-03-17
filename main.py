@@ -1,10 +1,9 @@
-from modernblockcode import DES
+from modernblockcode import AES
 
 if __name__ == '__main__':
-    M = "0123456789ABCDEF"
-    K = "133457799BBCDFF1"
-    D = "85E813540F0AB405"
-    r = DES.encode(M, K)
-    print(r)
-    p = DES.decode(D, K)
-    print(p)
+    matrix = [['87', 'F2', '4D', '97'], ['6E', '4C', '90', 'EC'],
+              ['46', 'E7', '4A', 'C3'], ['A6', '8C', 'D8', '95']]
+    k = AES.mixcolumns(matrix)
+    print(k)
+    k_1 = AES.invmixcolumns(k)
+    print(k_1)
