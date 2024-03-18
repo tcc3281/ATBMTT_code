@@ -209,6 +209,56 @@ class AES:
         ['0D', '09', '0E', '0B'],
         ['0B', '0D', '09', '0E']
     ]
+    rcon = [
+        ['01', '00', '00', '00'], ['02', '00', '00', '00'],
+        ['04', '00', '00', '00'], ['08', '00', '00', '00'],
+        ['10', '00', '00', '00'], ['20', '00', '00', '00'],
+        ['40', '00', '00', '00'], ['80', '00', '00', '00'],
+        ['1b', '00', '00', '00'], ['36', '00', '00', '00']
+    ]
+
+    @staticmethod
+    def keyexpansion(key):
+        def xor(a, b):
+            r = []
+            for i in range(4):
+                na = int(a[i], 16)
+                nb = int(b[i], 16)
+                r.append(hex(na ^ nb)[2:].upper().zfill(2))
+            return r
+
+        w = [[] for _ in range(44)]
+        matrix_w = []
+        for i in range(4):
+            t = key[i * 8:i * 8 + 8]
+            w[i] = [t[:2], t[2:4], t[4:6], t[6:8]]
+        for i in range(4, 44):
+            if i % 4 != 0:
+                w[i] = xor(w[i - 1], w[i - 4])
+            else:
+                rot = AES.rotword(w[i - 1])
+                sub = AES.subword(rot)
+                temp = xor(sub, b=AES.rcon[i // 4 - 1])
+                w[i] = xor(temp, w[i - 4])
+
+        for i in range(0, 44, 4):
+            m = []
+            m.append(w[i])
+            m.append(w[i + 1])
+            m.append(w[i + 2])
+            m.append(w[i + 3])
+            matrix_w.append(m)
+        return matrix_w
+
+    @staticmethod
+    def addroundkey(matrix, key):
+        res = []
+        for i in range(4):
+            row = []
+            for j in range(4):
+                row.append(hex(int(matrix[i][j], 16) ^ int(key[i][j], 16))[2:].upper().zfill(2))
+            res.append(row)
+        return res
 
     @staticmethod
     def subbytes(matrix: list):
@@ -220,6 +270,41 @@ class AES:
                 y = AES._index[i[1]]
                 row.append(AES.s_box[x][y].zfill(2))
             res.append(row)
+        return res
+
+    @staticmethod
+    def shiftrows(matrix: list):
+        shift = 0
+        res = matrix.copy()
+        for i in range(4):
+            col = []
+            for j in range(4):
+                col.append(matrix[j][i])
+            j = 0
+            for k in col[shift:] + col[:shift]:
+                res[j][i] = k
+                j += 1
+            shift += 1
+        return res
+
+    @staticmethod
+    def mixcolumns(matrix: list):
+        res = []
+        for i in range(4):
+            row = []
+            for j in range(4):
+                flag = True
+                cell = 0
+                for k in range(4):
+                    if flag:
+                        cell = AES.galois_mult(AES.c_matrix[i][k], matrix[j][k])
+                        flag = False
+                    else:
+                        cell ^= AES.galois_mult(AES.c_matrix[i][k], matrix[j][k])
+                row.append(hex(cell)[2:].upper().zfill(2))
+            res.append(row)
+        res = AES.rotate(res)
+
         return res
 
     @staticmethod
@@ -235,45 +320,18 @@ class AES:
         return res
 
     @staticmethod
-    def shiftrows(matrix: list):
-        shift = 0
-        res = []
-        for i in range(4):
-            row = []
-            for j in range(4):
-                row.append(matrix[i][(j + shift) % 4])
-            res.append(row)
-            shift += 1
-        return res
-
-    @staticmethod
     def invshiftrows(matrix: list):
-        shift = 0
-        res = []
+        shift = 4
+        res = matrix.copy()
         for i in range(4):
-            row = []
+            col = []
             for j in range(4):
-                row.append(matrix[i][(j - shift) % 4])
-            res.append(row)
-            shift += 1
-        return res
-
-    @staticmethod
-    def mixcolumns(matrix: list):
-        res = []
-        for i in range(4):
-            row = []
-            for j in range(4):
-                flag = True
-                cell = 0
-                for k in range(4):
-                    if flag:
-                        cell = AES.galois_mult(AES.c_matrix[i][k], matrix[k][j])
-                        flag = False
-                    else:
-                        cell ^= AES.galois_mult(AES.c_matrix[i][k], matrix[k][j])
-                row.append(hex(cell)[2:].upper().zfill(2))
-            res.append(row)
+                col.append(matrix[j][i])
+            j = 0
+            for k in col[shift:] + col[:shift]:
+                res[j][i] = k
+                j += 1
+            shift -= 1
         return res
 
     @staticmethod
@@ -286,19 +344,43 @@ class AES:
                 cell = 0
                 for k in range(4):
                     if flag:
-                        cell = AES.galois_mult(AES.c_1_matrix[i][k], matrix[k][j])
+                        cell = AES.galois_mult(AES.c_1_matrix[i][k], matrix[j][k])
                         flag = False
                     else:
-                        cell ^= AES.galois_mult(AES.c_1_matrix[i][k], matrix[k][j])
+                        cell ^= AES.galois_mult(AES.c_1_matrix[i][k], matrix[j][k])
                 row.append(hex(cell)[2:].upper().zfill(2))
             res.append(row)
+        res = AES.rotate(res)
         return res
+
+    @staticmethod
+    def rotword(word):
+        r = word[1:] + word[:1]
+        return r
+
+    @staticmethod
+    def subword(word: str):
+        r = []
+        for i in word:
+            x = AES._index[i[0]]
+            y = AES._index[i[1]]
+            r.append(AES.s_box[x][y])
+        return r
+
+    @staticmethod
+    def rotate(matrix):
+        l = len(matrix)
+        for i in range(l):
+            for j in range(i, l):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        return matrix
 
     @staticmethod
     def galois_mult(num_a, num_b):
         a = int(num_a, 16)
         b = int(num_b, 16)
         p = 0
+
         for i in range(8):
             b_1 = b & 1
             if b_1 == 1:
@@ -308,14 +390,60 @@ class AES:
             if hi_bit_set == 0x80:
                 a ^= 0x1b
             b >>= 1
+
         return p % 256
 
     @staticmethod
-    def addroundkey(matrix, key):
-        res = []
+    def encode(plaintext: str, key: str):
+        state = AES.transMatrix(plaintext)
+        matrix_w = AES.keyexpansion(key)
+        res = state
+        res = AES.addroundkey(res, matrix_w[0])
+        for i in range(1, 10):
+            res = AES.subbytes(res)
+            res = AES.shiftrows(res)
+            res = AES.mixcolumns(res)
+            res = AES.addroundkey(res, matrix_w[i])
+
+        res = AES.subbytes(res)
+        res = AES.shiftrows(res)
+        res = AES.addroundkey(res, matrix_w[10])
+        return res
+
+    @staticmethod
+    def decode(ciphertext: str, key: str):
+        state = AES.transMatrix(ciphertext)
+
+        matrix_w = AES.keyexpansion(key)
+        res = state
+        res = AES.addroundkey(res, matrix_w[10])
+        for i in range(9, 0, -1):
+            res = AES.invshiftrows(res)
+            res = AES.invsubbytes(res)
+            res = AES.addroundkey(res, matrix_w[i])
+            res = AES.invmixcolumns(res)
+
+        res = AES.invshiftrows(res)
+        res = AES.invsubbytes(res)
+        res = AES.addroundkey(res, matrix_w[0])
+        return res
+
+    @staticmethod
+    def transMatrix(text: str):
+        matrix = []
+        index = 0
         for i in range(4):
             row = []
             for j in range(4):
-                row.append(int(matrix[i][j]) ^ int(key[i][j]))
-            res.append(row)
-        return res
+                row.append(text[index:index + 2].zfill(2))
+                index += 2
+            matrix.append(row)
+        return matrix
+
+    @staticmethod
+    def transText(matrix: list):
+        text = ''
+        for i in matrix:
+            for j in i:
+                text += j
+        return text

@@ -1,10 +1,9 @@
 from modernblockcode import AES
 
 if __name__ == '__main__':
-    matrix = [['87', 'F2', '4D', '97'], ['6E', '4C', '90', 'EC'],
-              ['46', 'E7', '4A', 'C3'], ['A6', '8C', 'D8', '95']]
-    k = AES.mixcolumns(matrix)
-    print(k)
-    k_1 = AES.invmixcolumns(k)
-    print(k_1)
-    AES.galois_mult('57', '83')
+    plaintext = "3243f6a8885a308d313198a2e0370734"
+    key = '2b7e151628aed2a6abf7158809cf4f3c'
+    d = "3925841D02DC09FBDC118597196A0B32"
+    r = AES.decode(d, key)
+    print(*r, sep='\n')
+    print(AES.transText(r))
