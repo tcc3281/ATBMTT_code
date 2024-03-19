@@ -42,73 +42,73 @@ class DES:
 
     @staticmethod
     def encode(plaintext: str, key_hex: str):
-        child_key = DES.devire_key(DES.hextobin(key_hex))
+        child_keys = DES.devire_key(DES.hextobin(key_hex))
         pt_64bit = DES.ip(DES.hextobin(plaintext))
-        L, R = pt_64bit[:64 // 2], pt_64bit[64 // 2:]
+        pltext_l, pltext_r = pt_64bit[:64 // 2], pt_64bit[64 // 2:]
         for i in range(16):
-            L, R = DES.cal(L, R, child_key[i])
-        ciphertext = DES.fp(R + L)
+            pltext_l, pltext_r = DES.cal(pltext_l, pltext_r, child_keys[i])
+        ciphertext = DES.fp(pltext_r + pltext_l)
         return DES.bintohex(ciphertext)
 
     @staticmethod
     def decode(ciphertext: str, key: str):
         child_key = DES.devire_key(DES.hextobin(key))
         cp_64bit = DES.ip(DES.hextobin(ciphertext))
-        R, L = cp_64bit[:64 // 2], cp_64bit[64 // 2:]
+        ciptext, ciptext_l = cp_64bit[:64 // 2], cp_64bit[64 // 2:]
 
         for i in range(15, -1, -1):
-            R, L = DES.cal(R, L, child_key[i])
+            ciptext, ciptext_l = DES.cal(ciptext, ciptext_l, child_key[i])
 
-        plaintext = DES.fp(L + R)
+        plaintext = DES.fp(ciptext_l + ciptext)
 
         return DES.bintohex(plaintext)
 
     @staticmethod
     def devire_key(key_bin: str):
-        K0 = ""
+        key0 = ""
         for i in DES.PC_1:
-            K0 += key_bin[i - 1]
-        C, D = K0[:56 // 2], K0[56 // 2:]
+            key0 += key_bin[i - 1]
+        key_c, key_d = key0[:56 // 2], key0[56 // 2:]
 
         def shift_left(text, n):
             return text[DES.Lap[n]:] + text[:DES.Lap[n]]
 
-        subK = []
+        sub_k = []
         for i in range(16):
-            C = shift_left(C, i)
-            D = shift_left(D, i)
-            temp = C + D
+            key_c = shift_left(key_c, i)
+            key_d = shift_left(key_d, i)
+            temp = key_c + key_d
             k = ""
             for j in DES.PC_2:
                 k += temp[j - 1]
-            subK.append(k)
-        return subK
+            sub_k.append(k)
+        return sub_k
 
     @staticmethod
-    def F(R: str, K: str):
+    def func_f(r: str, k: str):
         expend = ""
         for i in DES.E_BOX:
-            expend += R[i - 1]
+            expend += r[i - 1]
 
-        xor = bin(int(expend, 2) ^ int(K, 2))[2:].zfill(len(K))
+        xor = bin(int(expend, 2) ^ int(k, 2))[2:].zfill(len(k))
         start = 0
-        S = ""
+        s = ""
         for i in range(8):
-            B = xor[start:start + 6]
-            r = int(B[0] + B[5], 2)
-            c = int(B[1: 5], 2)
-            S += bin(DES.S_BOX[i][r * 16 + c])[2:].zfill(4)
+            b = xor[start:start + 6]
+            r = int(b[0] + b[5], 2)
+            c = int(b[1: 5], 2)
+            s += bin(DES.S_BOX[i][r * 16 + c])[2:].zfill(4)
             start += 6
-        F = ""
+        f = ""
         for i in DES.P_BOX:
-            F += S[i - 1]
-        return F
+            f += s[i - 1]
+        return f
 
     @staticmethod
-    def cal(L: str, R: str, K: str):
-        R_res = bin(int(L, 2) ^ int(DES.F(R, K), 2))[2:].zfill(len(L))
-        L_res = R
-        return L_res, R_res
+    def cal(left: str, right: str, k: str):
+        r_res = bin(int(left, 2) ^ int(DES.func_f(right, k), 2))[2:].zfill(len(left))
+        l_res = right
+        return l_res, r_res
 
     @staticmethod
     def ip(plaintext: str):
@@ -180,22 +180,22 @@ class AES:
         ['8C', 'A1', '89', '0D', 'BF', 'E6', '42', '68', '41', '99', '2D', '0F', 'B0', '54', 'BB', '16']
     ]
     inv_s_box = [
-        ['52', '9', '6A', 'D5', '30', '36', 'A5', '38', 'BF', '40', 'A3', '9E', '81', 'F3', 'D7', 'FB'],
+        ['52', '09', '6A', 'D5', '30', '36', 'A5', '38', 'BF', '40', 'A3', '9E', '81', 'F3', 'D7', 'FB'],
         ['7C', 'E3', '39', '82', '9B', '2F', 'FF', '87', '34', '8E', '43', '44', 'C4', 'DE', 'E9', 'CB'],
-        ['54', '7B', '94', '32', 'A6', 'C2', '23', '3D', 'EE', '4C', '95', 'B', '42', 'FA', 'C3', '4E'],
-        ['8', '2E', 'A1', '66', '28', 'D9', '24', 'B2', '76', '5B', 'A2', '49', '6D', '8B', 'D1', '25'],
+        ['54', '7B', '94', '32', 'A6', 'C2', '23', '3D', 'EE', '4C', '95', '0B', '42', 'FA', 'C3', '4E'],
+        ['08', '2E', 'A1', '66', '28', 'D9', '24', 'B2', '76', '5B', 'A2', '49', '6D', '8B', 'D1', '25'],
         ['72', 'F8', 'F6', '64', '86', '68', '98', '16', 'D4', 'A4', '5C', 'CC', '5D', '65', 'B6', '92'],
         ['6C', '70', '48', '50', 'FD', 'ED', 'B9', 'DA', '5E', '15', '46', '57', 'A7', '8D', '9D', '84'],
-        ['90', 'D8', 'AB', '0', '8C', 'BC', 'D3', 'A', 'F7', 'E4', '58', '5', 'B8', 'B3', '45', '6'],
-        ['D0', '2C', '1E', '8F', 'CA', '3F', 'F', '2', 'C1', 'AF', 'BD', '3', '1', '13', '8A', '6B'],
+        ['90', 'D8', 'AB', '00', '8C', 'BC', 'D3', '0A', 'F7', 'E4', '58', '05', 'B8', 'B3', '45', '06'],
+        ['D0', '2C', '1E', '8F', 'CA', '3F', '0F', '02', 'C1', 'AF', 'BD', '03', '01', '13', '8A', '6B'],
         ['3A', '91', '11', '41', '4F', '67', 'DC', 'EA', '97', 'F2', 'CF', 'CE', 'F0', 'B4', 'E6', '73'],
         ['96', 'AC', '74', '22', 'E7', 'AD', '35', '85', 'E2', 'F9', '37', 'E8', '1C', '75', 'DF', '6E'],
-        ['47', 'F1', '1A', '71', '1D', '29', 'C5', '89', '6F', 'B7', '62', 'E', 'AA', '18', 'BE', '1B'],
+        ['47', 'F1', '1A', '71', '1D', '29', 'C5', '89', '6F', 'B7', '62', '0E', 'AA', '18', 'BE', '1B'],
         ['FC', '56', '3E', '4B', 'C6', 'D2', '79', '20', '9A', 'DB', 'C0', 'FE', '78', 'CD', '5A', 'F4'],
-        ['1F', 'DD', 'A8', '33', '88', '7', 'C7', '31', 'B1', '12', '10', '59', '27', '80', 'EC', '5F'],
-        ['60', '51', '7F', 'A9', '19', 'B5', '4A', 'D', '2D', 'E5', '7A', '9F', '93', 'C9', '9C', 'EF'],
+        ['1F', 'DD', 'A8', '33', '88', '07', 'C7', '31', 'B1', '12', '10', '59', '27', '80', 'EC', '5F'],
+        ['60', '51', '7F', 'A9', '19', 'B5', '4A', '0D', '2D', 'E5', '7A', '9F', '93', 'C9', '9C', 'EF'],
         ['A0', 'E0', '3B', '4D', 'AE', '2A', 'F5', 'B0', 'C8', 'EB', 'BB', '3C', '83', '53', '99', '61'],
-        ['17', '2B', '4', '7E', 'BA', '77', 'D6', '26', 'E1', '69', '14', '63', '55', '21', 'C', '7D']
+        ['17', '2B', '04', '7E', 'BA', '77', 'D6', '26', 'E1', '69', '14', '63', '55', '21', '0C', '7D'],
     ]
     c_matrix = [
         ['02', '03', '01', '01'],
@@ -242,12 +242,10 @@ class AES:
                 w[i] = xor(temp, w[i - 4])
 
         for i in range(0, 44, 4):
-            m = []
-            m.append(w[i])
-            m.append(w[i + 1])
-            m.append(w[i + 2])
-            m.append(w[i + 3])
-            matrix_w.append(m)
+            row = []
+            for j in range(4):
+                row.append(w[i + j])
+            matrix_w.append(row)
         return matrix_w
 
     @staticmethod
@@ -369,9 +367,9 @@ class AES:
 
     @staticmethod
     def rotate(matrix):
-        l = len(matrix)
-        for i in range(l):
-            for j in range(i, l):
+        length = len(matrix)
+        for i in range(length):
+            for j in range(i, length):
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
         return matrix
 
@@ -395,7 +393,7 @@ class AES:
 
     @staticmethod
     def encode(plaintext: str, key: str):
-        state = AES.transMatrix(plaintext)
+        state = AES.trans_matrix(plaintext)
         matrix_w = AES.keyexpansion(key)
         res = state
         res = AES.addroundkey(res, matrix_w[0])
@@ -408,11 +406,11 @@ class AES:
         res = AES.subbytes(res)
         res = AES.shiftrows(res)
         res = AES.addroundkey(res, matrix_w[10])
-        return res
+        return AES.trans_text(res)
 
     @staticmethod
     def decode(ciphertext: str, key: str):
-        state = AES.transMatrix(ciphertext)
+        state = AES.trans_matrix(ciphertext)
 
         matrix_w = AES.keyexpansion(key)
         res = state
@@ -426,10 +424,10 @@ class AES:
         res = AES.invshiftrows(res)
         res = AES.invsubbytes(res)
         res = AES.addroundkey(res, matrix_w[0])
-        return res
+        return AES.trans_text(res)
 
     @staticmethod
-    def transMatrix(text: str):
+    def trans_matrix(text: str):
         matrix = []
         index = 0
         for i in range(4):
@@ -441,7 +439,7 @@ class AES:
         return matrix
 
     @staticmethod
-    def transText(matrix: list):
+    def trans_text(matrix: list):
         text = ''
         for i in matrix:
             for j in i:
