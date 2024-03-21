@@ -1,6 +1,8 @@
+import math
+
 from modernblockcode import AES
 from modernblockcode import DES
-
+from modulararithmetic import Module
 
 def des():
     print("DES:")
@@ -29,3 +31,4 @@ def aes():
 if __name__ == '__main__':
     des()
     aes()
+

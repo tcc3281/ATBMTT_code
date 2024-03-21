@@ -296,14 +296,9 @@ class AES:
         for i in range(4):
             row = []
             for j in range(4):
-                flag = True
                 cell = 0
                 for k in range(4):
-                    if flag:
-                        cell = AES.galois_mult(AES.c_matrix[i][k], matrix[j][k])
-                        flag = False
-                    else:
-                        cell ^= AES.galois_mult(AES.c_matrix[i][k], matrix[j][k])
+                    cell ^= AES.galois_mult(AES.c_matrix[i][k], matrix[j][k])
                 row.append(hex(cell)[2:].upper().zfill(2))
             res.append(row)
         res = AES.rotate(res)

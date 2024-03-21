@@ -67,3 +67,12 @@ class Module:
                 _pow = 0
                 num += 1
         return d
+
+    @staticmethod
+    def pow_euler(a, m, mod):
+        eu_n = Module.euler_function(mod)
+        ex = m % eu_n
+        res = a % mod
+        res = res ** ex
+        res %= mod
+        return res
