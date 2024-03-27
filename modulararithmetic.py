@@ -13,7 +13,7 @@ class Module:
         return True
 
     @staticmethod
-    def extend_euclid(a, mod):
+    def extended_euclid(a, mod):
         def sub_ex_euclid(num, _mod):
             if _mod == 0:
                 return [num, 1, 0]
@@ -21,7 +21,8 @@ class Module:
                 d, x, y = sub_ex_euclid(_mod, num % _mod)
                 return d, y, x - num // _mod * y
 
-        return sub_ex_euclid(a, mod)[1]
+        res = sub_ex_euclid(a, mod)[1]
+        return res if res > 0 else res + mod
 
     @staticmethod
     def pow(a, m, mod):
@@ -76,3 +77,53 @@ class Module:
         res = res ** ex
         res %= mod
         return res
+
+    @staticmethod
+    def pow_chinese(A, exp, mod):
+        '''
+        :param a:
+        :param m:
+        :param mod:
+        :return:
+        '''
+        mul = 1
+        m = []
+        for i, v in Module.analysis_prime(mod).items():
+            mul *= i * v
+            m.append(i * v)
+        res = 0
+        for i in range(len(m)):
+            M = mul // m[i]
+            _M = Module.extended_euclid(M, m[i])
+            c = M * (_M % m[i])
+            a = pow(A, exp, m[i])
+            res = (res + (a * c) % mod) % mod
+
+        return res
+
+    @staticmethod
+    def solve_equation_chinese(a: list, m: list):
+        if len(a) != len(m):
+            ValueError("The length of a and m should be the same")
+
+        res = 0
+        mul = 1
+        for i in m:
+            mul *= i
+
+        for i in range(len(a)):
+            M = mul // m[i]
+            _M = Module.extended_euclid(M, m[i])
+            c = M * (_M % m[i])
+            res += a[i] * c
+        return res % mul
+
+
+if __name__ == '__main__':
+    print('Bai 1:', Module.pow(239, 6653, 6653), pow(239, 6653, 6653))
+    print('Bai 2:', Module.extended_euclid(1974, 7841))
+    print('Bai 3:', Module.pow(311, 821, 6311), pow(311, 821, 6311))
+    print('Bai 4:', Module.euler_function(3312))
+    print('Bai 5:', Module.pow_euler(38, 2934, 220), pow(38, 2934, 220))
+    print('Bai 6:', Module.pow_chinese(241, 59, 63307), pow(241, 59, 63307))
+    print('Bai 7:', Module.solve_equation_chinese([5, 5, 6], [19, 11, 13]))
