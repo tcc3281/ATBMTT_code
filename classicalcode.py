@@ -224,10 +224,7 @@ class Cryptology:
 
     @staticmethod
     def rota(a):
-        # Khởi tạo ma trận ban đầu
-        # Xoay ma trận 90 độ theo chiều kim đồng hồ
         b = [list(reversed(x)) for x in zip(*a)]
-        # In kết quả
         return b
 
     @staticmethod

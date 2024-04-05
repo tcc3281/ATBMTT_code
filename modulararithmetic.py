@@ -14,6 +14,9 @@ class Module:
 
     @staticmethod
     def extended_euclid(a, mod):
+        if math.gcd(a, mod) != 1:
+            raise ValueError("error")
+
         def sub_ex_euclid(num, _mod):
             if _mod == 0:
                 return [num, 1, 0]
@@ -25,7 +28,7 @@ class Module:
         return res if res > 0 else res + mod
 
     @staticmethod
-    def pow(a, m, mod):
+    def pow_2(a, m, mod):
         a = a % mod
         num = bin(m)
         res = 1
@@ -80,12 +83,6 @@ class Module:
 
     @staticmethod
     def pow_chinese(A, exp, mod):
-        '''
-        :param a:
-        :param m:
-        :param mod:
-        :return:
-        '''
         mul = 1
         m = []
         for i, v in Module.analysis_prime(mod).items():
@@ -104,7 +101,7 @@ class Module:
     @staticmethod
     def solve_equation_chinese(a: list, m: list):
         if len(a) != len(m):
-            ValueError("The length of a and m should be the same")
+            raise ValueError("The length of a and m should be the same")
 
         res = 0
         mul = 1
@@ -118,12 +115,30 @@ class Module:
             res += a[i] * c
         return res % mul
 
+    @staticmethod
+    def is_primitive_root(a, n):
+        e = Module.euler_function(n)
+        for i in range(1, e):
+            if a ** i % n == 1:
+                return False
+        return True
+
+    @staticmethod
+    def logarit(a, b, p):
+        i = 0
+        while True:
+            if a ** i % p == b:
+                return i
+            i += 1
+
 
 if __name__ == '__main__':
-    print('Bai 1:', Module.pow(239, 6653, 6653), pow(239, 6653, 6653))
+    print('Bai 1:', Module.pow_2(239, 6653, 6653))
     print('Bai 2:', Module.extended_euclid(1974, 7841))
-    print('Bai 3:', Module.pow(311, 821, 6311), pow(311, 821, 6311))
+    print('Bai 3:', Module.pow_2(311, 821, 6311))
     print('Bai 4:', Module.euler_function(3312))
-    print('Bai 5:', Module.pow_euler(38, 2934, 220), pow(38, 2934, 220))
-    print('Bai 6:', Module.pow_chinese(241, 59, 63307), pow(241, 59, 63307))
+    print('Bai 5:', Module.pow_euler(38, 2934, 220))
+    print('Bai 6:', Module.pow_chinese(241, 59, 63307))
     print('Bai 7:', Module.solve_equation_chinese([5, 5, 6], [19, 11, 13]))
+    print('Bai 8:', Module.is_primitive_root(5, 263))
+    print('Bai 9:', Module.logarit(2, 7, 11))

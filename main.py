@@ -1,31 +1,25 @@
-from modernblockcode import AES
-from modernblockcode import DES
+def vigenere_decrypt(ciphertext, key):
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    decrypted = ''
+    key_index = 0
+
+    for char in ciphertext:
+        if char in alphabet:
+            # Tìm vị trí của ký tự trong bảng chữ cái và thực hiện phép trừ
+            index = (alphabet.index(char) - alphabet.index(key[key_index])) % len(alphabet)
+            decrypted += alphabet[index]
+            key_index = (key_index + 1) % len(key)
+        else:
+            decrypted += char
+
+    return decrypted
 
 
-def des():
-    print("DES:")
-    plaintext = '0123456789ABCDEF'
-    ciphertext = '85E813540F0AB405'
-    key = '133457799BBCDFF1'
-    print('plaintext: ' + plaintext)
-    p = DES.encode(plaintext, key)
-    print(f'encode: {p}')
-    c = DES.decode(ciphertext, key)
-    print(f'decode: {c}')
+# Cụm từ mã hóa cần giải mã
+ciphertext = 'ZVSU CMDS JLHL W'
+# Khóa Vigenère
+key = 'THERE'
 
-
-def aes():
-    print('AES:')
-    plaintext = '3243f6a8885a308d313198a2e0370734'
-    ciphertext = '3925841D02DC09FBDC118597196A0B32'
-    key = '2b7e151628aed2a6abf7158809cf4f3c'
-    print('plaintext: ' + plaintext)
-    p = AES.encode(plaintext, key)
-    print(f'encode: {p}')
-    c = AES.decode(ciphertext, key)
-    print(f'decode: {c}')
-
-
-if __name__ == '__main__':
-    des()
-    aes()
+# Giải mã cụm từ
+decrypted_text = vigenere_decrypt(ciphertext.replace(" ", ""), key)
+print("Cụm từ sau khi giải mã:", decrypted_text)

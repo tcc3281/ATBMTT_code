@@ -42,6 +42,8 @@ class DES:
 
     @staticmethod
     def encode(plaintext: str, key_hex: str):
+        if plaintext=='':
+            raise ValueError("Empty input")
         child_keys = DES.devire_key(DES.hextobin(key_hex))
         pt_64bit = DES.ip(DES.hextobin(plaintext))
         pltext_l, pltext_r = pt_64bit[:64 // 2], pt_64bit[64 // 2:]
@@ -52,6 +54,8 @@ class DES:
 
     @staticmethod
     def decode(ciphertext: str, key: str):
+        if ciphertext=='':
+            raise ValueError("Empty input")
         child_key = DES.devire_key(DES.hextobin(key))
         cp_64bit = DES.ip(DES.hextobin(ciphertext))
         ciptext, ciptext_l = cp_64bit[:64 // 2], cp_64bit[64 // 2:]
@@ -393,6 +397,8 @@ class AES:
 
     @staticmethod
     def encode(plaintext: str, key: str):
+        if plaintext=='':
+            raise ValueError("Empty input")
         state = AES.trans_matrix(plaintext)
         matrix_w = AES.keyexpansion(key)
         res = state
@@ -410,6 +416,9 @@ class AES:
 
     @staticmethod
     def decode(ciphertext: str, key: str):
+
+        if ciphertext=='':
+            raise ValueError("Empty input")
         state = AES.trans_matrix(ciphertext)
 
         matrix_w = AES.keyexpansion(key)
@@ -445,4 +454,30 @@ class AES:
             for j in i:
                 text += j
         return text
-        
+
+def des():
+    print("DES:")
+    plaintext = '0123456789ABCDEF'
+    ciphertext = '85E813540F0AB405'
+    key = '133457799BBCDFF1'
+    print('plaintext: ' + plaintext)
+    p = DES.encode(plaintext, key)
+    print(f'encode: {p}')
+    c = DES.decode(ciphertext, key)
+    print(f'decode: {c}')
+
+
+def aes():
+    print('AES:')
+    plaintext = '3243f6a8885a308d313198a2e0370734'
+    ciphertext = '3925841D02DC09FBDC118597196A0B32'
+    key = '2b7e151628aed2a6abf7158809cf4f3c'
+    print('plaintext: ' + plaintext)
+    p = AES.encode(plaintext, key)
+    print(f'encode: {p}')
+    c = AES.decode(ciphertext, key)
+    print(f'decode: {c}')
+
+
+if __name__ == '__main__':
+    print(Cr)
