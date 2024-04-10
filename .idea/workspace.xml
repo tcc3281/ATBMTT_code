@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34b3e54-7b3b-4a91-a46c-eb092c1ec39d" name="Changes" comment="update module">
+    <list default="true" id="c34b3e54-7b3b-4a91-a46c-eb092c1ec39d" name="Changes" comment="last update">
+      <change afterPath="$PROJECT_DIR$/MaCoDien/classicalcode.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaCongKhai/publickeycode.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classicalcode.py" beforeDir="false" afterPath="$PROJECT_DIR$/classicalcode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modernblockcode.py" beforeDir="false" afterPath="$PROJECT_DIR$/modernblockcode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modulararithmetic.py" beforeDir="false" afterPath="$PROJECT_DIR$/modulararithmetic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classicalcode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modernblockcode.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaKhoiHienDai/modernblockcode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modulararithmetic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modulo/modulararithmetic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -41,52 +47,107 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for classicalcode.TestCryptology.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for classicalcode.TestCryptology.test_ceasar_encoding_decoding.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for classicalcode.TestCryptology.test_playfair_encoding_decoding.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_analysis_prime_with_non_prime_number.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_analysis_prime_with_prime_number.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_euler_function_with_non_prime_number.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_euler_function_with_prime_number.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_extend_euclid_with_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_isprime_with_non_prime_number.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_isprime_with_prime_number.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_pow_euler_with_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_pow_with_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for main.TestModule.test_solve_equation_chinese_with_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.TestAESEncryption.test_decode_with_empty_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.TestAESEncryption.test_decode_with_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.TestAESEncryption.test_encode_with_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.TestDESEncryption.test_decode_with_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.TestDESEncryption.test_encode_with_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestAESEncryption.test_isprime_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestAESEncryption.test_pow_chinese_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestAESEncryption.test_solve_equation_chinese_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_euler_function_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_extended_euclid_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_isprime_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_pow_chinese_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_pow_euler_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_pow_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_solve_equation_chinese_valid_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in classicalcode.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in main.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_modernblockcode.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_modulararithmetic.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.modernblockcode.executor&quot;: &quot;Run&quot;,
-    &quot;Python.modulararithmetic.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for classicalcode.TestCryptology.executor": "Run",
+    "Python tests.Python tests for classicalcode.TestCryptology.test_ceasar_encoding_decoding.executor": "Run",
+    "Python tests.Python tests for classicalcode.TestCryptology.test_playfair_encoding_decoding.executor": "Run",
+    "Python tests.Python tests for main.TestModule.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_analysis_prime_with_non_prime_number.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_analysis_prime_with_prime_number.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_euler_function_with_non_prime_number.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_euler_function_with_prime_number.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_extend_euclid_with_valid_input.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_isprime_with_non_prime_number.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_isprime_with_prime_number.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_pow_euler_with_valid_input.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_pow_with_valid_input.executor": "Run",
+    "Python tests.Python tests for main.TestModule.test_solve_equation_chinese_with_valid_input.executor": "Run",
+    "Python tests.Python tests for test.TestAESEncryption.test_decode_with_empty_input.executor": "Run",
+    "Python tests.Python tests for test.TestAESEncryption.test_decode_with_valid_input.executor": "Run",
+    "Python tests.Python tests for test.TestAESEncryption.test_encode_with_valid_input.executor": "Run",
+    "Python tests.Python tests for test.TestDESEncryption.test_decode_with_valid_input.executor": "Run",
+    "Python tests.Python tests for test.TestDESEncryption.test_encode_with_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestAESEncryption.test_isprime_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestAESEncryption.test_pow_chinese_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestAESEncryption.test_solve_equation_chinese_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_euler_function_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_extended_euclid_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_isprime_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_pow_chinese_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_pow_euler_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_pow_valid_input.executor": "Run",
+    "Python tests.Python tests for test_modernblockcode.TestModuleEncryption.test_solve_equation_chinese_valid_input.executor": "Run",
+    "Python tests.Python tests in classicalcode.py.executor": "Run",
+    "Python tests.Python tests in main.py.executor": "Run",
+    "Python tests.Python tests in test.py.executor": "Run",
+    "Python tests.Python tests in test_modernblockcode.py.executor": "Run",
+    "Python tests.Python tests in test_modulararithmetic.py.executor": "Run",
+    "Python.classicalcode (1).executor": "Run",
+    "Python.classicalcode.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.modernblockcode.executor": "Run",
+    "Python.modulararithmetic.executor": "Run",
+    "Python.publickeycode.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "branch__01",
+    "last_opened_file_path": "D:/tai_lieu/Nam3-ki2/An toàn và bảo mật thông tin/ATBMTT_code/ATBMTT_code/MaKhoiHienDai",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
-  <component name="RunManager" selected="Python.main">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\tai_lieu\Nam3-ki2\An toàn và bảo mật thông tin\ATBMTT_code\ATBMTT_code\MaKhoiHienDai" />
+      <recent name="D:\tai_lieu\Nam3-ki2\An toàn và bảo mật thông tin\ATBMTT_code\ATBMTT_code\Modulo" />
+      <recent name="D:\tai_lieu\Nam3-ki2\An toàn và bảo mật thông tin\ATBMTT_code\ATBMTT_code\MaCoDien" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.publickeycode">
+    <configuration name="classicalcode (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ATBMTT_code" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MaCoDien" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MaCoDien/classicalcode.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="classicalcode" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ATBMTT_code" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\tai_lieu\Nam3-ki2\An toàn và bảo mật thông tin\ATBMTT_code\ATBMTT_code\MaCoDien\classicalcode.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="ATBMTT_code" />
       <option name="ENV_FILES" value="" />
@@ -122,7 +183,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modulararithmetic.py" />
+      <option name="SCRIPT_NAME" value="D:\tai_lieu\Nam3-ki2\An toàn và bảo mật thông tin\ATBMTT_code\ATBMTT_code\Modulo\modulararithmetic.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -131,7 +192,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for classicalcode.TestCryptology" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="publickeycode" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ATBMTT_code" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MaCongKhai" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MaCongKhai/publickeycode.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for MaCoDien.classicalcode" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="ATBMTT_code" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,11 +225,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;classicalcode.TestCryptology&quot;" />
+      <option name="_new_target" value="&quot;MaCoDien.classicalcode&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for classicalcode.TestCryptology.test_ceasar_encoding_decoding" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for MaCoDien.classicalcode" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="ATBMTT_code" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -157,47 +240,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;classicalcode.TestCryptology.test_ceasar_encoding_decoding&quot;" />
+      <option name="_new_target" value="&quot;MaCoDien.classicalcode&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for classicalcode.TestCryptology.test_playfair_encoding_decoding" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="ATBMTT_code" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;classicalcode.TestCryptology.test_playfair_encoding_decoding&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in classicalcode.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="ATBMTT_code" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/classicalcode.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.publickeycode" />
+        <item itemvalue="Python.classicalcode (1)" />
         <item itemvalue="Python.modulararithmetic" />
-        <item itemvalue="Python tests.Python tests for classicalcode.TestCryptology.test_playfair_encoding_decoding" />
-        <item itemvalue="Python tests.Python tests for classicalcode.TestCryptology.test_ceasar_encoding_decoding" />
-        <item itemvalue="Python tests.Python tests in classicalcode.py" />
-        <item itemvalue="Python tests.Python tests for classicalcode.TestCryptology" />
+        <item itemvalue="Python.classicalcode" />
+        <item itemvalue="Python tests.Python tests for MaCoDien.classicalcode" />
       </list>
     </recent_temporary>
   </component>
@@ -289,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711531656670</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="last update">
+      <option name="closed" value="true" />
+      <created>1712282825703</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712282825703</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,17 +373,7 @@
     <MESSAGE value="end" />
     <MESSAGE value="update" />
     <MESSAGE value="update module" />
-    <option name="LAST_COMMIT_MESSAGE" value="update module" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/classicalcode.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="last update" />
+    <option name="LAST_COMMIT_MESSAGE" value="last update" />
   </component>
 </project>
