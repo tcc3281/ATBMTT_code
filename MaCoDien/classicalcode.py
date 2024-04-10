@@ -303,3 +303,4 @@ if __name__ == '__main__':
     monographic()
     playfair()
     railfence()
+    print("check")
